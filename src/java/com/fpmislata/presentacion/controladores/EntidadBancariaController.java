@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -32,7 +33,13 @@ public class EntidadBancariaController {
     @RequestMapping(value = "/entidadbancaria", method = RequestMethod.GET, produces = "application/json")
     public void findall(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException {
         try {
-            String jsonUsuario = jsonTransformer.toJson(entidadBancariaService.findAll());
+            String jsonUsuario;
+            if(httpServletRequest.getParameter("nombre") != null){
+                jsonUsuario = jsonTransformer.toJson(entidadBancariaService.findByNombre(httpServletRequest.getParameter("nombre")));
+            }else{
+                jsonUsuario = jsonTransformer.toJson(entidadBancariaService.findAll());
+            }
+             
             httpServletResponse.setStatus(HttpServletResponse.SC_OK);
             httpServletResponse.setContentType("application/json; charset=UTF-8");
             httpServletResponse.getWriter().println(jsonUsuario);
@@ -61,5 +68,49 @@ public class EntidadBancariaController {
             ex.printStackTrace(httpServletResponse.getWriter());
         }
     }
+    
+    
+    @RequestMapping(value = "/entidadbancaria/{idEntidadBancaria}", method = RequestMethod.DELETE, produces = "application/json")
+    public void delete(@PathVariable("idEntidadBancaria") int idEntidadBancaria, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException {
+        try {
+            boolean response = entidadBancariaService.delete(idEntidadBancaria);
 
-}
+            if (response) {
+                httpServletResponse.setStatus(HttpServletResponse.SC_NO_CONTENT);
+            } else {
+                httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace(httpServletResponse.getWriter());
+        }
+    }
+    
+    @RequestMapping(value = "/entidadbancaria", method = RequestMethod.POST,consumes= "application/json", produces = "application/json")
+    public void insert(@RequestBody String jsonEntrada, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException {
+        try {
+            EntidadBancaria entidadBancaria =jsonTransformer.fromJSON(jsonEntrada, EntidadBancaria.class);
+            String jsonSalida = jsonTransformer.toJson(entidadBancariaService.insert(entidadBancaria));
+            httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+            httpServletResponse.setContentType("application/json; charset=UTF-8");
+            httpServletResponse.getWriter().println(jsonSalida);
+        } catch (Exception ex) {
+            ex.printStackTrace(httpServletResponse.getWriter());
+        }
+    }
+    
+    @RequestMapping(value = "/entidadbancaria", method = RequestMethod.PUT,consumes= "application/json", produces = "application/json")
+    public void update(@RequestBody String jsonEntrada, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException {
+        try {
+            EntidadBancaria entidadBancaria =jsonTransformer.fromJSON(jsonEntrada, EntidadBancaria.class);
+            String jsonSalida = jsonTransformer.toJson(entidadBancariaService.update(entidadBancaria));
+            httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+            httpServletResponse.setContentType("application/json; charset=UTF-8");
+            httpServletResponse.getWriter().println(jsonSalida);
+        } catch (Exception ex) {
+            ex.printStackTrace(httpServletResponse.getWriter());
+        }
+    }
+    
+   
+    }
