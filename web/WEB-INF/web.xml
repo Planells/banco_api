@@ -9,10 +9,9 @@
             30
         </session-timeout>
     </session-config>
-     
-    <listener>
+     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener> 
+    </listener>
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
@@ -20,7 +19,14 @@
         classpath:banco_service.xml        
         </param-value>
         
-    </context-param>    
+    </context-param> 
+     <listener>
+        <listener-class>com.fpmislata.presentacion.database.ServletContextListenerImpl</listener-class>
+    </listener>
+     
+    
+    
+       
  
     <servlet>
         <servlet-name>dispatcher</servlet-name> 

@@ -69,7 +69,24 @@ public class EntidadBancariaController {
         }
     }
     
-    
+    @RequestMapping(value = "/entidadbancaria/defaultValue", method = RequestMethod.GET, produces = "application/json")
+    public void defaultValue( HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException {
+        try {
+            EntidadBancaria entidadBancaria = entidadBancariaService.defaultValue();
+
+            if (entidadBancaria == null) {
+                httpServletResponse.setStatus(HttpServletResponse.SC_NO_CONTENT);
+            } else {
+                String jsonUsuario = jsonTransformer.toJson(entidadBancaria);
+                httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+                httpServletResponse.setContentType("application/json; charset=UTF-8");
+                httpServletResponse.getWriter().println(jsonUsuario);
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace(httpServletResponse.getWriter());
+        }
+    }
     @RequestMapping(value = "/entidadbancaria/{idEntidadBancaria}", method = RequestMethod.DELETE, produces = "application/json")
     public void delete(@PathVariable("idEntidadBancaria") int idEntidadBancaria, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException {
         try {

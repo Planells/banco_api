@@ -10,7 +10,7 @@
     <context:annotation-config/>
   
     <bean class="com.fpmislata.presentacion.jackson.JsonTransformerImplJackson" />
-    
+    <bean class="com.fpmislata.presentacion.database.MigrationDBImpl" />
     
 
  
