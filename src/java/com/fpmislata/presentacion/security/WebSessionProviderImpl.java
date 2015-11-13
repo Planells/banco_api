@@ -5,18 +5,23 @@
  */
 package com.fpmislata.presentacion.security;
 
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author German
  */
 public class WebSessionProviderImpl implements WebSessionProvider {
-
+    
     @Override
     public WebSession getWebSession(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        WebSession webSession;
+        HttpSession httpSession = httpServletRequest.getSession();
+        webSession =(WebSession)httpSession.getAttribute("webSession");      
+        return webSession;
     }
     
 }
