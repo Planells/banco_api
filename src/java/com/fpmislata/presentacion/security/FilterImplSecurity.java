@@ -37,15 +37,15 @@ public class FilterImplSecurity implements Filter{
     
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-       
+       WebApplicationContext webApplicationContext = WebApplicationContextUtils.getRequiredWebApplicationContext(filterConfig.getServletContext());
+      AutowireCapableBeanFactory autowireCapableBeanFactory = webApplicationContext.getAutowireCapableBeanFactory();
+      autowireCapableBeanFactory.autowireBean(this);
     }
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
       Usuario usuario;  
-      WebApplicationContext webApplicationContext = WebApplicationContextUtils.getRequiredWebApplicationContext(request.getServletContext());
-      AutowireCapableBeanFactory autowireCapableBeanFactory = webApplicationContext.getAutowireCapableBeanFactory();
-      autowireCapableBeanFactory.autowireBean(this); 
+       
       HttpServletRequest httpServletRequest =(HttpServletRequest) request;
       HttpServletResponse httpServletResponse =(HttpServletResponse) response;
       WebSession webSession=webSessionProvider.getWebSession(httpServletRequest, httpServletResponse);
