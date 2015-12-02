@@ -16,8 +16,12 @@
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
-            classpath:banco_api.xml    
-            classpath:banco_service.xml        
+            classpath:jsonApiContext.xml
+            classpath:securityApiContext.xml
+            classpath:databaseApiContext.xml
+            classpath:businessContext.xml
+            classpath:persistenceContext.xml 
+            classpath:securityContext.xml       
         </param-value>
     </context-param> 
     

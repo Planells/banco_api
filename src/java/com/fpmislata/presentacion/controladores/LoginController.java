@@ -6,8 +6,8 @@
 package com.fpmislata.presentacion.controladores;
 
 
-import com.fpmislata.banco.bussiness.domain.Usuario;
-import com.fpmislata.presentacion.jackson.JsonTransformer;
+import com.fpmislata.banco.business.domain.Usuario;
+import com.fpmislata.presentacion.json.JsonTransformer;
 import com.fpmislata.presentacion.security.WebSession;
 import java.io.IOException;
 import java.util.Date;

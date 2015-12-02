@@ -9,9 +9,6 @@
   
     <context:annotation-config/>
   
-    <bean class="com.fpmislata.presentacion.jackson.JsonTransformerImplJackson" />
-    <bean class="com.fpmislata.presentacion.database.MigrationDBImpl" />
-    <bean class="com.fpmislata.presentacion.security.WebSessionProviderImpl" />
-
+    <bean class="com.fpmislata.presentacion.json.impl.JsonTransformerImplJackson" />
  
 </beans>

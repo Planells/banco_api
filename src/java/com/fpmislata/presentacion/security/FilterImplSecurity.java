@@ -5,7 +5,7 @@
  */
 package com.fpmislata.presentacion.security;
 
-import com.fpmislata.banco.bussiness.domain.Usuario;
+import com.fpmislata.banco.business.domain.Usuario;
 import com.fpmislata.banco.security.Authorization;
 import java.io.IOException;
 import javax.servlet.Filter;

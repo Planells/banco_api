@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.fpmislata.presentacion.jackson;
+package com.fpmislata.presentacion.json.impl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fpmislata.presentacion.json.JsonTransformer;
 import java.io.IOException;
 
 /**

@@ -5,9 +5,9 @@
  */
 package com.fpmislata.presentacion.controladores;
 
-import com.fpmislata.banco.bussiness.domain.EntidadBancaria;
-import com.fpmislata.banco.bussiness.service.EntidadBancariaService;
-import com.fpmislata.presentacion.jackson.JsonTransformer;
+import com.fpmislata.banco.business.domain.EntidadBancaria;
+import com.fpmislata.banco.business.service.EntidadBancariaService;
+import com.fpmislata.presentacion.json.JsonTransformer;
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
